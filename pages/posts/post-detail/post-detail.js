@@ -1,17 +1,21 @@
 var postsData = require('../../../data/posts-data.js');
+var app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    isPlayingMusic: false,
+    currentPostId: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var globalData  = app.globalData;
     var postId = options.id;
     this.data.currentPostId = postId;
     var postData = postsData.postList[postId];
@@ -33,7 +37,32 @@ Page({
       postsCollected[postId] = false;
       wx.setStorageSync('posts_collected', postsCollected);
     }
+    if (app.globalData.g_isPlayingMusic && app.globalData.g_currentMusicPostId === postId){
+      // this.data.isPlayingMusic = true;
+      this.setData({
+        isPlayingMusic: true
+      })
+    }
+    this.setMusicMonitor();
    
+  },
+
+  setMusicMonitor: function() {
+    var that = this;
+    wx.onBackgroundAudioPlay(function () {
+      that.setData({
+        isPlayingMusic: true
+      })
+      app.globalData.g_isPlayingMusic = true;
+      app.globalData.g_currentMusicPostId = that.data.currentPostId;
+    });
+    wx.onBackgroundAudioPause(function () {
+      that.setData({
+        isPlayingMusic: false
+      })
+      app.globalData.g_isPlayingMusic = false;
+      app.globalData.g_currentMusicPostId = null;
+    });
   },
 
   onCollectionTap: function(event){
@@ -49,8 +78,8 @@ Page({
     postsCollected[this.data.currentPostId] = postCollected;
 
     this.showToast(postsCollected, postCollected);
-  },
-
+  }, 
+ 
   getPostsCollectedAsy: function() {
     var that = this;
     wx.getStorage({
@@ -116,9 +145,34 @@ Page({
         wx.showModal({
           title: '用户' + itemList[res.tapIndex],
           content: '用户是否取消?'+res.cancel + '现在无法实现分享功能，什么时候支持呢'
-        })
+        });
       }
     })
+  },
+
+  onMusicTap: function(event) {
+    var isPlayingMusic = this.data.isPlayingMusic;
+    var currentPostId = this.data.currentPostId;
+    var postData = postsData.postList[currentPostId]
+    if (isPlayingMusic) {
+      wx.pauseBackgroundAudio();
+      this.setData({
+        isPlayingMusic: false
+      });
+      // this.data.isPlayingMusic = false;
+    } else {
+      wx.playBackgroundAudio({
+        dataUrl: postData.music.url,
+        title: postData.music.title,
+        coverImgUrl: postData.music.coverImg
+      });
+      this.setData({
+        isPlayingMusic: true
+      });
+      // this.data.isPlayingMusic = true;
+    }
+   
+
   },
 
   /**

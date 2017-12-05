@@ -1,0 +1,54 @@
+/* pages/me/me.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.me-head{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 260rpx;
+}
+.me-head-bg{
+  position: absolute;
+  z-index: -99;
+  width: 100%;
+  height: 260rpx;
+  filter: blur(3rpx);
+}
+.author{
+  width: 90rpx;
+  height: 90rpx;
+}
+.course-name{
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  font-size: 32rpx;
+  color: #fff;
+}
+.author-name{
+  font-size: 24rpx;
+  color: #fff;
+}
+.arrow-right{
+  margin-right: 40rpx;
+  width: 18rpx;
+  height: 32rpx;
+}
+.me-ctn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 70rpx;
+  border-bottom: 1px solid #eee;
+}
+.me-ctn-image{
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.me-ctn-text{
+  font-size: 28rpx;
+}

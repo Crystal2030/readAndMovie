@@ -1,0 +1,22 @@
+<view class='container'>
+<image class='me-head-bg' src='/images/time.jpg'></image>
+  <view class='me-head'>
+      <image class='author' src='/images/avatar/1.png'></image>
+      <text class='course-name'>极数课堂</text>
+      <text class='author-name'>用户ID:308211</text>
+  </view>
+  <view class='me-ctn-container'>
+    <view class='me-ctn'>
+      <image class='me-ctn-image' src='/images/icon/course.png'></image>
+      <text class='me-ctn-text'>我的课程</text>
+    </view>
+    <view class='me-ctn'>
+      <image class='me-ctn-image' src='/images/icon/msg.png'></image>
+      <text class='me-ctn-text'>我的消息</text>
+    </view>
+    <view class='me-ctn'>
+      <image class='me-ctn-image' src='/images/icon/service.png'></image>
+      <text class='me-ctn-text'>联系客服</text>
+    </view>
+  </view>
+</view>
