@@ -43,7 +43,8 @@ Page({
   onCancelImgTap: function(event) {
     this.setData({
       containerShow: true,
-      searchPannelShow: false
+      searchPannelShow: false,
+      searchResult: {}
     });
   },
   getMovieListData: function (url, settedKey, cagetoryTitle) {
