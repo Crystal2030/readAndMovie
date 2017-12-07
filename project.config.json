@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.6.6",
 	"appid": "touristappid",
-	"projectname": "wechat",
+	"projectname": "readandmovie",
 	"condition": {
 		"search": {
 			"current": -1,

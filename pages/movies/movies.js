@@ -1,4 +1,4 @@
-var util = require('../../utils/util.js');
+var util = require("../../utils/util.js");
 var app = getApp();
 Page({
   //RESTFul API JSON
@@ -6,7 +6,10 @@ Page({
   data: {
     inTheaters: {},
     comingSoon: {},
-    top250: {}
+    top250: {},
+    searchResult: {},
+    containerShow: true,
+    searchPannelShow: false
   },
   onLoad: function(event){
     var globalData = app.globalData.doubanBase;
@@ -25,6 +28,24 @@ Page({
       url: 'more-movie/more-movie?category=' + category
     })
   },
+  onBindFocus: function(event) {
+    console.log("onbindfocus");
+    this.setData({
+      containerShow: false,
+      searchPannelShow: true
+    });
+  },
+  onBindBlur: function(event) {
+    var text = event.detail.value;
+    var searchUrl = app.globalData.doubanBase + "/v2/movie/search?q=" + text;
+    this.getMovieListData(searchUrl, 'searchResult', "");
+  },
+  onCancelImgTap: function(event) {
+    this.setData({
+      containerShow: true,
+      searchPannelShow: false
+    });
+  },
   getMovieListData: function (url, settedKey, cagetoryTitle) {
     var that = this;
     wx.request({
@@ -35,7 +56,7 @@ Page({
       },
       success: function (res) {
         //success
-        console.log(res);
+        // console.log(res);
         that.processDoubanData(res.data, settedKey, cagetoryTitle);
       },
       fail: function (error) {
@@ -73,5 +94,11 @@ Page({
       movies: movies
     };
     this.setData(readyData);
+  },
+
+  oMovieTap: function(event) {
+    wx.navigateTo({
+      // url: '../posts'
+    })
   }
 })
