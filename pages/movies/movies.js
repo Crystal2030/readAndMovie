@@ -41,6 +41,7 @@ Page({
     this.getMovieListData(searchUrl, 'searchResult', "");
   },
   onCancelImgTap: function(event) {
+    console.log('on cancel img tap')
     this.setData({
       containerShow: true,
       searchPannelShow: false,
@@ -94,12 +95,14 @@ Page({
       categoryTitle: cagetoryTitle,
       movies: movies
     };
+    console.log('readydata---->', readyData);
     this.setData(readyData);
   },
 
   oMovieTap: function(event) {
+    var movieId = event.currentTarget.dataset.movieid;
     wx.navigateTo({
-      // url: '../posts'
-    })
+      url: 'movie-detail/movie-detail?id=' + movieId
+    });
   }
 })

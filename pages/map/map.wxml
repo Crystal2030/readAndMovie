@@ -1,0 +1,11 @@
+<!--pages/map/map.wxml-->
+<map
+    id="map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    markers="{{markers}}"
+    bindmarkertmap="markertap"
+    polyline="{{polyline}}"
+    style="width:100%; height:300px;"
+>
+</map>

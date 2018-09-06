@@ -21,7 +21,7 @@
 
 .search input {
   height: 100%;
-  width: 600rpx;
+  width: 550rpx;
   margin-left: 20px;
   font-size: 28rpx;
 }
@@ -40,5 +40,5 @@
 .xx-img{
     height: 30rpx;
     width: 30rpx;
-    margin:auto 0 auto 10rpx;
+    margin:auto 0 auto 50rpx;
 }
